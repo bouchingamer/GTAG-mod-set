@@ -1,2 +1,1 @@
-# GTAG-mod-set
-mods for Gorilla Tag
+DOWNLOAD AT YOUR OWN RISK; I DO NOT OWN ALL OF THESE MODS.

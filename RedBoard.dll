@@ -1,0 +1,40 @@
+using BepInEx;
+using UnityEngine;
+
+namespace FakeBanUI
+{
+    [BepInPlugin("com.yourname.fakebanui", "Fake Ban UI", "1.0.0")]
+    public class Plugin : BaseUnityPlugin
+    {
+        private bool applied;
+
+        void Update()
+        {
+            if (applied) return;
+
+            Renderer[] renderers = FindObjectsOfType<Renderer>();
+
+            foreach (Renderer renderer in renderers)
+            {
+                string objName = renderer.gameObject.name.ToLower();
+
+                if (objName.Contains("computer") ||
+                    objName.Contains("board") ||
+                    objName.Contains("screen") ||
+                    objName.Contains("terminal"))
+                {
+                    try
+                    {
+                        Material mat = new Material(renderer.material);
+                        mat.color = Color.red;
+                        renderer.material = mat;
+                    }
+                    catch { }
+                }
+            }
+
+            applied = true;
+            Logger.LogInfo("Applied fake ban red UI.");
+        }
+    }
+}
